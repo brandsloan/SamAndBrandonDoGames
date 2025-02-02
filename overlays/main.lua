@@ -36,4 +36,8 @@ function M.update(dt)
   state.current.update(dt)
 end
 
+function M.mousereleased(x, y, button)
+  
+end
+
 return M

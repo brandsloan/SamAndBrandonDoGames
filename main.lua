@@ -40,7 +40,7 @@ function love.keypressed(key)
 end
 
 function love.mousereleased(x, y, button)
-  state.current.mousereleased(x, y, button)
+  overlay.mousereleased(x, y, button)
 end
 
 function love.draw(t)
