@@ -97,11 +97,9 @@ end
 
 function M.mousereleased(x, y, button)
   for i, v in pairs(buttons) do
-    Logger.log("mouse x " .. x .. " mouse y " .. y)
-    Logger.log(
-      "button x " .. v.x .. " button y " .. v.y .. " button width " .. v.width .. " button height " .. v.height
-    )
-    Logger.log("button was clicked? " .. tostring(buttonBoi.contains(v.x, v.y, v.width, v.height, x, y)))
+    if button == 1 and buttonBoi.contains(v.x, v.y, v.width, v.height, x, y) then
+      -- change state
+    end
   end
   if button == 1 and HANDLING_CARD then
     GameState = reducer(
@@ -114,7 +112,9 @@ function M.mousereleased(x, y, button)
     get_card_locations()
     HANDLING_CARD = false
     HANDLE_INDEX = nil
+  
   end
+
 end
 
 local function draw_stationary_card(imageName, index)
@@ -141,10 +141,11 @@ end
 function M.draw(t)
   -- center lines
   draw_debug_axis()
-  local x = windowWidth / 2 - 2
-  local y = 0
   local width = 200
-  local height = 200
+  local height = 100
+  local x = windowWidth - width
+  local y = windowHeight / 2 - 2 - height / 2
+  
   buttonBoi.create(x, y, width, height, { text = "bing bop boom boom boom bop bam" })
   table.insert(buttons, { x = x, y = y, width = width, height = height })
 
